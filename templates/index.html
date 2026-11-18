@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask E-Commerce Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>My Store</h1>
+        <div class="nav-auth">
+            {% if current_user.is_authenticated %}
+                <span>Hello, <b>{{ current_user.username }}</b></span>
+                <a href="{{ url_for('logout') }}" class="auth-link">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="auth-link">Login</a>
+                <a href="{{ url_for('register') }}" class="auth-link">Register</a>
+            {% endif %}
+            <button id="cart-btn" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="product-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p class="price">${{ "%.2f"|format(product.price) }}</p>
+                <button onclick="addToCart({{ product.id }}, '{{ product.name }}', {{ product.price }})">
+                    Add to Cart
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- Slide-out Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar hidden">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button onclick="toggleCart()">✕</button>
+        </div>
+        <div id="cart-items"></div>
+        <div class="cart-footer">
+            <h3>Total: $<span id="cart-total">0.00</span></h3>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

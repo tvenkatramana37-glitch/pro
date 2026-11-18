@@ -1,0 +1,12 @@
+.nav-auth { display: flex; align-items: center; gap: 1rem; }
+.auth-link { color: #fff; text-decoration: none; font-weight: 500; }
+.auth-link:hover { text-decoration: underline; }
+
+.auth-body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f2f5; }
+.auth-card { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 300px; text-align: center; }
+.auth-card h2 { margin-bottom: 1.5rem; }
+.auth-card input { width: 100%; padding: 0.7rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px; }
+.auth-card button { width: 100%; padding: 0.7rem; background: #007bff; color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
+.auth-card p { margin-top: 1rem; font-size: 0.9rem; }
+.flash.danger { color: red; margin-bottom: 1rem; font-size: 0.9rem; }
+.flash.success { color: green; margin-bottom: 1rem; font-size: 0.9rem; }
